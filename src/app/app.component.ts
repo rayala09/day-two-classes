@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+// CLASSES
 class Greeting {
   message: string;
   constructor(message: string) {
@@ -101,6 +101,28 @@ class Worker extends Person {
   }
 }
 
+// INTERFACES
+
+interface Stuff {
+  name: string;
+  age: number;
+  department?: string;
+
+  foo?(s: string): string;
+  foo?(n: number): number;
+}
+
+class StuffTwo implements Stuff {
+  name: string;
+  age: number;
+
+  foo?(s: string) {
+    this.name = s;
+
+  }
+}
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -114,9 +136,11 @@ export class AppComponent implements OnInit {
     // this.animalClassTesting();
     // this.classCompatibilityTesting();
     // this.extendDerivedClassTesting();
-    this.protectedTesting();
+    // this.protectedTesting();
+    this.interfaceTesting({name: 'xyz', age: 25});
   }
 
+  // CLASS TESTING
   classTesting() {
     const greeter = new Greeting('world!');
     console.log(greeter.greet());
@@ -164,5 +188,13 @@ export class AppComponent implements OnInit {
     console.log(person);
   }
 
-}
+  // INTERFACE TESTING
+  interfaceTesting(x: Stuff) {
+    console.log(`${x.name} is ${x.age} years old and works in ${x.department}.`);
+    // x.foo(2);
 
+    const stuff = new StuffTwo();
+    stuff.foo('test');
+    console.log(stuff.name);
+  }
+}
