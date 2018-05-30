@@ -114,7 +114,15 @@ export class AppComponent implements OnInit {
     // this.animalClassTesting();
     // this.classCompatibilityTesting();
     // this.extendDerivedClassTesting();
-    this.protectedTesting();
+    // this.protectedTesting();
+
+    // testing generics
+    const positions: number[] = [234, 235, 236, 248, 298];
+    const colors: string[] = ['red', 'green', 'blue', 'black'];
+    console.log('random number selected: ', this.randomIntElem([234, 235, 236, 248, 298]));
+    console.log('random string selected: ', this.randomStrElem(['red', 'green', 'blue', 'black']));
+    console.log('random position selected from randomElem: ', this.randomElem(positions));
+    console.log('random color selected from randomElem: ', this.randomElem(colors));
   }
 
   classTesting() {
@@ -160,8 +168,24 @@ export class AppComponent implements OnInit {
     const worker = new Worker('Steve', 'Sales');
     console.log(worker.getDetails());
 
-    const person = new Person('Patrick');
-    console.log(person);
+    // const person = new Person('Patrick');
+    // console.log(person);
+  }
+
+  // GENERICS
+  randomIntElem(arr: number[]): number {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+  }
+
+  randomStrElem(arr: string[]): string {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+  }
+
+  randomElem(arr: any[]): any {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
   }
 
 }
